@@ -5,7 +5,7 @@ function replaceLightboxElementWithAnchor() {
   if (!(window.location.host === "www.reddit.com" && window.location.pathname.includes("/comments/"))) {
     return;
   }
-  browser.storage.local.get('disableLightbox', function(result) {
+  chrome.storage.local.get('disableLightbox', function (result) {
     if (result.disableLightbox) {
       const images = document.querySelectorAll('img.media-lightbox-img');
       for (let i = 0; i < images.length; i++) {

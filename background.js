@@ -40,29 +40,29 @@ function modifyAcceptHeader(details) {
 
 checkSetting();
 function checkSetting() {
-  browser.storage.local.get('redirectToOriginalImage', function(result) {
+  chrome.storage.local.get('redirectToOriginalImage', function (result) {
     redirectToOriginalImageEnabled = result.redirectToOriginalImage
   });
-  browser.storage.local.get('useOldAccept', function(result) {
+  chrome.storage.local.get('useOldAccept', function (result) {
     useOldAccept = result.useOldAccept
   });
 }
 
-browser.storage.onChanged.addListener(checkSetting);
+chrome.storage.onChanged.addListener(checkSetting);
 
-browser.webRequest.onBeforeRequest.addListener(
+chrome.webRequest.onBeforeRequest.addListener(
   redirect,
   { urls: ["*://www.reddit.com/media*"], types: ["main_frame"] },
   ["blocking"]
 );
 
-browser.webRequest.onBeforeRequest.addListener(
+chrome.webRequest.onBeforeRequest.addListener(
   redirectToOriginalImage,
   { urls: ["*://preview.redd.it/*"], types: ["main_frame"] },
   ["blocking"]
 );
 
-browser.webRequest.onBeforeSendHeaders.addListener(
+chrome.webRequest.onBeforeSendHeaders.addListener(
   modifyAcceptHeader,
   { urls: ['*://i.redd.it/*', '*://external-preview.redd.it/*', '*://preview.redd.it/*'] },
   ['blocking', 'requestHeaders']
