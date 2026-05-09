@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Load Reddit Images Directly",
-  "version": "1.8",
+  "version": "1.9",
   "description": "Loads Reddit images directly instead of referring to the HTML page containing the image.",
   "permissions": [
     "activeTab",
@@ -11,6 +11,7 @@
     "*://i.redd.it/*",
     "*://external-preview.redd.it/*",
     "*://preview.redd.it/*",
+    "*://cf.preview.redd.it/*",
     "*://www.reddit.com/*"
   ],
   "background": {
